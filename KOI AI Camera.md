@@ -65,7 +65,7 @@ If you don't need to know what face it is, but just where the face is, then you 
 
 ### Barcode & QR Reading
 
-If you ever need to scan barcodes or QR codes, then you can use the KOI. This functionality does not need WiFi. When you scan a QR or barcode it will show a square around it with the text it contains above it. It can also scan April Tags, which allow you to figure out where the KOI is relative to the April Tag.
+If you ever need to scan barcodes or QR codes, then you can use the KOI. This functionality does not need WiFi. When you scan a QR or barcode it will show a square around it with the text it contains above it, and we have not yet found a way to stop it. It can also scan April Tags, which allow you to figure out where the KOI is relative to the April Tag.
 
 ## Micro:bit Programming
 
@@ -97,9 +97,11 @@ In theory, you just have the run the `TTS <message>` block while on WiFi, but th
 
 To start, run either the `KOI BAR code` or `KOI QR code` blocks. Once it detects one, it will trigger either the `on Barcode code <code>` or `on QR code <link>` handlers.
 
-## Micropython Programming
+TODO: Test and then add April Tag documentation.
 
-As written earlier, you can access Micropython either through the REPL or through the SD card. Refer to the [Micropython Website](https://micropython.org/) for more information on the language generally, but if you know Python you shouldn't have too much trouble.
+## MicroPython Programming
+
+As written earlier, you can access MicroPython either through the REPL or through the SD card. Refer to the [MicroPython Website](https://MicroPython.org/) for more information on the language generally, but if you know Python you shouldn't have too much trouble.
 
 ### WiFi
 
@@ -107,6 +109,24 @@ You can attempt to connect to WiFi using the command `wifi.joinap(str("apname"),
 
 ### Facial Recognition
 
-The Micropython facial recognition is also based around face tokens, but it is not based around event handlers. You can initiate the facial recognition by setting a variable to `baiduFace(op=1)`, for example with `face = baiduFace(op=1)`. For this documentation we will be calling the variable `face`, but you can call it whatever you want. You can get the face token from the variable using `face[face_token]`. This syntax can also be used to get the rest of the data of the face, including its location, gender, expression, angle, whether it's wearing a mask, and its age by replacing `face_token` with `location`, `gender`, `expression`, `angle`, `mask`, or `age` respectively.
+Doing facial recognition in MicroPython is kind of complicated. The first thing that you have to do, whether you are adding a new face or attempting to recognize a face, is run `baiduFace(op=1)`. This takes a second or two and eventually returns an object containing the scanned facial data, if it sucessfully found a face. In this documentation we assume that you set a variable to this returned data, and call this variable `face`, but you can call it whatever you want.
 
-You add a face to a group with the command `baiduFace(op=2, token=face['face_token'], group="group", name="name")`, and recognize a face with `baiduFace(op=3, token=face['face_token'], group="group")`. This will return an object containing both the name and confidence of the face.
+You can get the face token from the variable using `face[face_token]`. This syntax can also be used to get the rest of the data of the face, including its location, gender, expression, angle, whether it's wearing a mask, and its age by replacing `face_token` with `location`, `gender`, `expression`, `angle`, `mask`, or `age` respectively.
+
+You add a face to a group with the command `baiduFace(op=2, token=face['face_token'], group="group", name="name")`.
+
+You can attempt to recognize a face with `baiduFace(op=3, token=face['face_token'], group="group")`. This will return an object containing both the name and confidence of what it thinks the face is.
+
+TODO: Explain the structure of the returned object.
+
+### TTS
+
+The official documentation for the MicroPython interface does not mention TTS, and we are still trying to see if it is possible.
+
+### Barcode & QR Reading
+
+You can scan for barcodes with `findBarcode()` and QR codes with `findQRCode()`. They will return an object containing the scanned barcode or QR code, if it finds one.
+
+TODO: Explain the structure of the returned object.
+
+TODO: Test and then add April Tag documentation
