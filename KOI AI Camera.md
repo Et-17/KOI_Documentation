@@ -4,7 +4,7 @@ The KOI AI Camera is a device produced by KittenBot that allows you to perform o
 
 ## Physical Connection
 
-It is much easier to control the KOI with a Micro:bit than with self-hosting. It will let you use a larger program space, more memory, and a more familiar programming environment. If you still wish to do self-hosting, then you just need to plug the KOI into your computer using the MicroUSB port at the bottom, then skip the rest of this section. The physical connection and wiring is very important to the health and safety of you, the KOI, and the Micro:bit that you connect it too. Negligence can and has broken KOI modules before. When you look at the serial connection with the screen pointing up, the pins from left to right are ground, voltage, transmission, reception. Keep in mind that the color scheme changes from wire to wire. The transmission and reception have to be plugged in to a pin that can be used for digital GPIO. There are a few of them, and you get more by disabling the screens, but the most guaranteed-to-work ones are P0, P1, and P2. The ground and voltage connections depend on whether you are powering from a computer or a breakout board. It usually doesn't matter, but it is much safer for beginners if you use a computer.
+It is much easier to control the KOI with a Micro:bit than with self-hosting. It will let you use a larger program space, more memory, and a more familiar programming environment. If you still wish to do self-hosting, then you just need to plug the KOI into your computer using the MicroUSB port at the bottom, then skip the rest of this section. The physical connection and wiring is very important to the health and safety of you, the KOI, and the Micro:bit that you connect it too. Negligence can and has broken KOI modules before. When you look at the serial connection with the screen pointing up and the MicroSD card facing you but to the right of the serial connection, the pins from left to right are ground, voltage, transmission, reception. Keep in mind that the color scheme changes from module to module and is therefore completely unreliable. The transmission and reception have to be connected to a pin that can be used for digital GPIO. There are a few of them, and you get more by disabling the Micro:bit screen, but the most guaranteed-to-work ones are P0, P1, and P2. The ground and voltage connections depend on whether you are powering from a computer or a breakout board. It usually doesn't matter, but it is much safer for beginners if you use a computer.
 
 ### Computer
 
@@ -12,7 +12,9 @@ If you are powering from a computer, then only connect the data lines. Leave the
 
 ### Breakout Board
 
-Refer to Mr. Cortez. Do not attempt to wire anything on your own.
+Refer to Mr. Cortez. Do not attempt to wire anything on your own or else you risk completely frying it. However, for **!educational purposes only!**, I will describe it. You must connect it to 5V, meaning that you have to have a 9V battery connceted to the DC barrel. The breakouts that we use in AI class have two voltage rails, V1 and V2. On the bottom near the barrel is two jumpers that decided whether each rail is connected to 3V or 5V. You can use whichever rail you want, just ensure that the one you use has the jumper connected to 5V.
+
+The connector furthest from the MicroSD card is ground, and therefore should be connected to a ground pin on the breakout board. The one immediately to the right of it is the 5V pin, which should be connected to the 5V rail that you selected. Connect the two data lines in the same way as the previous section.
 
 ## Programming
 
