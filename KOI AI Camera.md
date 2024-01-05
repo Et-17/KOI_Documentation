@@ -43,6 +43,14 @@ Your KOI has many amazing features that can be used to design all sorts of devic
 
 The KOI can store files on a provided MicroSD card. This includes things such as train
 
+### Onboard Buttons
+
+The KOI has A and B buttons on the side of it, which you can use just like the A and B buttons on the KOI (they are seperate and not perfect replacements; refer to implementation specific documentation for more information).
+
+### Screenshot Display
+
+The KOI can take screenshots and then display them on screen later.
+
 ### WiFi
 
 Perhaps the most intriguing is it's ability to connect to WiFi. When you plug the KOI into your computer, you will see a WiFi with the name of "ESD_\<numbers\>". If you connect to this WiFi, then go to the address of the network's gateway (usually ```https://192.168.1.1```) in your web browser, you will see a control panel for the various WiFi features. You can still view this panel when it is connected to the WiFi by finding out its IP address, and then going to that instead.  This panel allows you to connect to other WiFis, view various settings and status logs, and update the WiFi firmware. 
@@ -51,7 +59,7 @@ The KOI can only connect to WiFi networks that do not have spaces in their name 
 
 It also can only connect to 2.5 GHz WiFi networks. Most routers broadcast both a 2.5 GHz and a 5 GHz version of the WiFi, so make sure that you connect to the 2.5 GHz version.
 
-There is a chance that the KOI will sucessfully connect to the WiFi, but still give timeout errors whenever yout ry to use the AI functions. We're not entirely sure why this happens, but we think it's because the servers are in China which isn't known to have the fastest internet. There is currently no fix.
+There is a chance that the KOI will sucessfully connect to the WiFi, but still give timeout errors whenever you try to use the AI functions. We're not entirely sure why this happens, but we think it's because the servers are in China which isn't known to have the fastest internet. There is currently no fix.
 
 ### Facial Recognition
 
@@ -64,6 +72,10 @@ When you restart the bit it will clear the training data, but if you have a Micr
 ### Facial Detection
 
 If you don't need to know what face it is, but just where the face is, then you can use the offline facial detection system.
+
+### Image Classification
+
+Faces aren't the only things that can be recognized. The KOI can classisify any image. For example, you can train it with a photograph of scissors, and a photograph of a water bottle and it will be able to tell you if a future photograph is of scissors or of a water bottle. It can store a maximum of 40 items.
 
 ### Barcode & QR Reading
 
@@ -104,6 +116,14 @@ TODO: Test and then add April Tag documentation.
 ## MicroPython Programming
 
 As written earlier, you can access MicroPython either through the REPL or through the SD card. Refer to the [MicroPython Website](https://MicroPython.org/) for more information on the language generally, but if you know Python you shouldn't have too much trouble.
+
+### Onboard Buttons
+
+At any time you can get the status of the onboard buttons using `btnAValue()` and `btnBValue()` which will return a `1` when the button is pressed, and a `0` when the button is not pressed. Unfortunately there is not a way to have the buttons trigger an event.
+
+### Screenshot Display
+
+Every picture is stored to a file name. In order to take a photo, use `img.save("name")`, where name is the name of the file that you store. The photos that it stores are JPEGs, so it is recommended to store the images with the extension `.jpg`. In the future, you can briefly display the image on screen with `loadImage("name")`. 
 
 ### WiFi
 
