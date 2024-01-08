@@ -71,7 +71,7 @@ When you restart the bit it will clear the training data, but if you have a Micr
 
 ### Facial Detection
 
-If you don't need to know what face it is, but just where the face is, then you can use the offline facial detection system.
+If you don't need to know what face it is, but just where the face is, then you can use the offline facial detection system. When the system detects a face, it will draw a rectangle around the face on the screen.
 
 ### Image Classification
 
@@ -102,6 +102,12 @@ Once you get connected to the WiFi, you can start doing facial recognition. You 
 You don't actually store the facial data anywhere when you're using block code, just the face token. Inside the event handler, you can use the token variable with `add face token <token> to Group <group> with name <name>` to teach it the face. Remember, you can have the faces in different groups, but you have to tell it what group a face you want to recognize is from; the recognition is not cross-group. The name that you give the face is the name that it will return to you when it tries to recognize the face.
 
 In order to try to recognize the face that it scans, you can use the `search face token <token> in group <group>` block inside the event handler. Just as with adding faces, you use the token variable that the handler gives you. Once it finishes trying to recognize the face, it will trigger the `on Find Face <name> <confidence>` handler. Inside this, you can do whatever you want with the result. The name variable is self-explanetory, but the confidence variable is a scale of 0-1, which shows how sure the KOI is of what face it told you. Normally, you don't have to worry about it, but you could use, for example, to have the program simply say it couldn't recognize the given face if the confidence is too low.
+
+### Facial Detection
+
+Before you actually do any detection, you have to run the block `KOI Load Face yolo` which will initialize the model. Normally, you'd just run this along with the rest of your startup code, but you can run it whenever you want as long as it is before you try facial detection.
+
+Once the model is initialized, you can run `KOI face detect` to scan the current image for faces. If it finds anything, it will trigger the `on Find Face <x> <y>` event. the `x` and `y` variables obviously contain the coordinates of the center of the detected face in screen coordinates. If there are multiple faces detected, it will simply trigger the event multiple times.
 
 ### TTS
 
